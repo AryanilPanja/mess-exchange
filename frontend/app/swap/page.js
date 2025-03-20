@@ -88,41 +88,44 @@ export default function SwapPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
       <Navbar />
       <div className="max-w-4xl mx-auto p-6">
-        <h1 className="text-4xl font-bold text-center text-gray-800 mb-6">
+        <h1 className="text-4xl font-bold text-center text-gray-800 dark:text-gray-100 mb-6">
           Swap Deals
         </h1>
 
         {/* Form for creating a new swap deal */}
-        <form onSubmit={handleCreateSwap} className="bg-white shadow-md rounded-lg p-6 mb-8">
-          <h2 className="text-2xl font-semibold text-gray-700 mb-4">
+        <form
+          onSubmit={handleCreateSwap}
+          className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 mb-8"
+        >
+          <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-4">
             Create a Swap Deal
           </h2>
 
           {/* Swap Date Picker */}
           <div className="mb-4">
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label className="block text-gray-700 dark:text-gray-200 font-semibold mb-2">
               Swap Date
             </label>
             <DatePicker
               selected={swapDate}
               onChange={(date) => setSwapDate(date)}
-              className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full border border-gray-300 dark:border-gray-700 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100"
               dateFormat="yyyy-MM-dd"
             />
           </div>
 
           {/* Offered Mess Dropdown */}
           <div className="mb-4">
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label className="block text-gray-700 dark:text-gray-200 font-semibold mb-2">
               Mess Offering
             </label>
             <select
               value={offeredMess}
               onChange={(e) => setOfferedMess(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full border border-gray-300 dark:border-gray-700 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             >
               <option value="">Select Offered Mess</option>
@@ -135,13 +138,13 @@ export default function SwapPage() {
 
           {/* Wanted Mess Dropdown */}
           <div className="mb-4">
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label className="block text-gray-700 dark:text-gray-200 font-semibold mb-2">
               Mess Wanted
             </label>
             <select
               value={wantedMess}
               onChange={(e) => setWantedMess(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full border border-gray-300 dark:border-gray-700 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             >
               <option value="">Select Wanted Mess</option>
@@ -154,13 +157,13 @@ export default function SwapPage() {
 
           {/* Meal Type Dropdown */}
           <div className="mb-4">
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label className="block text-gray-700 dark:text-gray-200 font-semibold mb-2">
               Meal Type
             </label>
             <select
               value={mealType}
               onChange={(e) => setMealType(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full border border-gray-300 dark:border-gray-700 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             >
               <option value="">Select Meal</option>
@@ -179,28 +182,30 @@ export default function SwapPage() {
         </form>
 
         {message && (
-          <p className="mb-6 text-center text-lg text-green-600">{message}</p>
+          <p className="mb-6 text-center text-lg text-green-600 dark:text-green-400">
+            {message}
+          </p>
         )}
 
         {/* Display Existing Swap Deals */}
         <div>
-          <h2 className="text-3xl font-semibold text-gray-800 mb-4">
+          <h2 className="text-3xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
             Available Swap Deals
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {swapDeals.map((deal) => (
-              <div key={deal.id} className="bg-white rounded-lg shadow-lg p-6">
-                <p className="text-gray-700 mb-2">
+              <div key={deal.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <p className="text-gray-700 dark:text-gray-200 mb-2">
                   <span className="font-bold">Date:</span>{" "}
                   {new Date(deal.swapDate).toLocaleDateString()}
                 </p>
-                <p className="text-gray-700 mb-2">
+                <p className="text-gray-700 dark:text-gray-200 mb-2">
                   <span className="font-bold">Offered Mess:</span> {deal.offeredMess}
                 </p>
-                <p className="text-gray-700 mb-2">
+                <p className="text-gray-700 dark:text-gray-200 mb-2">
                   <span className="font-bold">Wanted Mess:</span> {deal.wantedMess}
                 </p>
-                <p className="text-gray-700 mb-2">
+                <p className="text-gray-700 dark:text-gray-200 mb-2">
                   <span className="font-bold">Meal:</span> {deal.mealType}
                 </p>
                 <button

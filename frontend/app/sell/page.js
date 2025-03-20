@@ -16,8 +16,8 @@ export default function SellPage() {
     const payload = {
       mess: selectedMess,
       meal: selectedMeal,
-      price: price,
-      mobile: mobile,
+      price,
+      mobile,
     };
 
     try {
@@ -29,38 +29,38 @@ export default function SellPage() {
       if (res.ok) {
         const data = await res.text();
         setMessage("Offer posted successfully!");
-        // Clear the form fields
+        // Clear form fields after successful submission
         setSelectedMess("");
         setSelectedMeal("");
         setPrice("");
         setMobile("");
       } else {
-        setMessage("Error posting the offer.");
+        setMessage("Error posting offer");
       }
     } catch (error) {
       console.error("Error:", error);
-      setMessage("Error posting the offer.");
+      setMessage("Error posting offer");
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
       <Navbar />
       <div className="max-w-2xl mx-auto p-6">
-        <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">
+        <h1 className="text-4xl font-bold text-center text-gray-800 dark:text-gray-100 mb-8">
           Sell Your Meal
         </h1>
-        <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-lg p-8">
+        <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-8">
           {/* Mess Name Dropdown */}
           <div className="mb-6">
-            <label htmlFor="mess" className="block text-gray-700 font-semibold mb-2">
+            <label htmlFor="mess" className="block text-gray-700 dark:text-gray-200 font-semibold mb-2">
               Mess Name
             </label>
             <select
               id="mess"
               value={selectedMess}
               onChange={(e) => setSelectedMess(e.target.value)}
-              className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full border border-gray-300 dark:border-gray-700 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             >
               <option value="">Select Mess</option>
@@ -73,14 +73,14 @@ export default function SellPage() {
 
           {/* Meal Type Dropdown */}
           <div className="mb-6">
-            <label htmlFor="meal" className="block text-gray-700 font-semibold mb-2">
+            <label htmlFor="meal" className="block text-gray-700 dark:text-gray-200 font-semibold mb-2">
               Meal Type
             </label>
             <select
               id="meal"
               value={selectedMeal}
               onChange={(e) => setSelectedMeal(e.target.value)}
-              className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full border border-gray-300 dark:border-gray-700 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             >
               <option value="">Select Meal</option>
@@ -92,7 +92,7 @@ export default function SellPage() {
 
           {/* Price Input */}
           <div className="mb-6">
-            <label htmlFor="price" className="block text-gray-700 font-semibold mb-2">
+            <label htmlFor="price" className="block text-gray-700 dark:text-gray-200 font-semibold mb-2">
               Price ($)
             </label>
             <input
@@ -100,15 +100,15 @@ export default function SellPage() {
               type="number"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-              placeholder="Enter your price"
-              className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              placeholder="Enter price"
+              className="w-full border border-gray-300 dark:border-gray-700 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             />
           </div>
 
           {/* Mobile Number Input */}
           <div className="mb-6">
-            <label htmlFor="mobile" className="block text-gray-700 font-semibold mb-2">
+            <label htmlFor="mobile" className="block text-gray-700 dark:text-gray-200 font-semibold mb-2">
               Contact Mobile
             </label>
             <input
@@ -116,8 +116,8 @@ export default function SellPage() {
               type="text"
               value={mobile}
               onChange={(e) => setMobile(e.target.value)}
-              placeholder="Enter your mobile number"
-              className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              placeholder="Enter mobile number"
+              className="w-full border border-gray-300 dark:border-gray-700 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             />
           </div>
@@ -129,7 +129,9 @@ export default function SellPage() {
             Post Offer
           </button>
           {message && (
-            <p className="mt-4 text-center text-lg text-green-600">{message}</p>
+            <p className="mt-4 text-center text-lg text-green-600 dark:text-green-400">
+              {message}
+            </p>
           )}
         </form>
       </div>
